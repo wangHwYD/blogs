@@ -2,29 +2,22 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>关于 | 小浩</title>
+<title>windows服务 使用installutil手工安装windows服务 | 小浩</title>
 <link rel="shortcut icon" href="https://wanghwyd.github.io/blogs/favicon.ico?v=1637832346805">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://wanghwyd.github.io/blogs/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="关于 | 小浩 - Atom Feed" href="https://wanghwyd.github.io/blogs/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="windows服务 使用installutil手工安装windows服务 | 小浩 - Atom Feed" href="https://wanghwyd.github.io/blogs/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="
-欢迎来到我的小站呀，很高兴遇见你！🤝
+    <meta name="description" content="1.找到 C:\Windows\Microsoft.NET\Framework\v4.0.30319
+打开cmd命令行
+2.执行命令
+installutil E:\nginx-1.18.0\nginx-service.exe
 
-🏠 关于本站
-    使用github + Gridea  记录一些平常遇到的bug,和整理一些技术资料
-
-👨‍💻 博主是谁
-    王浩文
-
-⛹ 兴趣爱好
-    ^_^
-
-📬 联系我呀..." />
-    <meta name="keywords" content="" />
+3.完成安装..." />
+    <meta name="keywords" content="服务器" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
@@ -86,48 +79,46 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              关于
+              windows服务 使用installutil手工安装windows服务
             </h2>
             <div class="post-info">
               <span>
-                2021-11-24
+                2021-11-25
               </span>
               <span>
                 1 min read
               </span>
               
+                <a href="https://wanghwyd.github.io/blogs/tag/70kvu0CI9/" class="post-tag">
+                  # 服务器
+                </a>
+              
             </div>
             
-              <img class="post-feature-image" src="https://wanghwyd.github.io/blogs/post-images/about.jpg" alt="">
+              <img class="post-feature-image" src="https://wanghwyd.github.io/blogs/post-images/windows-fu-wu-shi-yong-installutil-shou-gong-an-zhuang-windows-fu-wu.png" alt="">
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<pre><code>    使用github + Gridea  记录一些平常遇到的bug,和整理一些技术资料
+                <h2 id="1找到-cwindowsmicrosoftnetframeworkv4030319">1.找到 C:\Windows\Microsoft.NET\Framework\v4.0.30319</h2>
+<p>打开cmd命令行</p>
+<h2 id="2执行命令">2.执行命令</h2>
+<pre><code>installutil E:\nginx-1.18.0\nginx-service.exe
 </code></pre>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<pre><code>    王浩文
+<h2 id="3完成安装提示-打开计算机管理的服务列表可以查看到自己的服务">3.完成安装提示 打开计算机管理的服务列表，可以查看到自己的服务</h2>
+<h2 id="4删除服务">4.删除服务</h2>
+<pre><code>installutil E:\nginx-1.18.0\nginx-service.exe -u
+刷新服务列表，发现找不到自己的服务了
 </code></pre>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<pre><code>    ^_^
-</code></pre>
-<h2 id="联系我呀">📬 联系我呀</h2>
-<pre><code>    542524570@163.com   
-</code></pre>
-<p><a href="https://wanghwyd.github.io/blogs/post/jian-li">个人简历</a></p>
 
               </div>
               <div class="toc-container">
                 <ul class="markdownIt-TOC">
 <li>
 <ul>
-<li><a href="#%E5%85%B3%E4%BA%8E%E6%9C%AC%E7%AB%99">🏠 关于本站</a></li>
-<li><a href="#%E5%8D%9A%E4%B8%BB%E6%98%AF%E8%B0%81">👨‍💻 博主是谁</a></li>
-<li><a href="#%E5%85%B4%E8%B6%A3%E7%88%B1%E5%A5%BD">⛹ 兴趣爱好</a></li>
-<li><a href="#%E8%81%94%E7%B3%BB%E6%88%91%E5%91%80">📬 联系我呀</a></li>
+<li><a href="#1%E6%89%BE%E5%88%B0-cwindowsmicrosoftnetframeworkv4030319">1.找到 C:\Windows\Microsoft.NET\Framework\v4.0.30319</a></li>
+<li><a href="#2%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4">2.执行命令</a></li>
+<li><a href="#3%E5%AE%8C%E6%88%90%E5%AE%89%E8%A3%85%E6%8F%90%E7%A4%BA-%E6%89%93%E5%BC%80%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%AE%A1%E7%90%86%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%88%97%E8%A1%A8%E5%8F%AF%E4%BB%A5%E6%9F%A5%E7%9C%8B%E5%88%B0%E8%87%AA%E5%B7%B1%E7%9A%84%E6%9C%8D%E5%8A%A1">3.完成安装提示 打开计算机管理的服务列表，可以查看到自己的服务</a></li>
+<li><a href="#4%E5%88%A0%E9%99%A4%E6%9C%8D%E5%8A%A1">4.删除服务</a></li>
 </ul>
 </li>
 </ul>
@@ -140,9 +131,9 @@
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://wanghwyd.github.io/blogs/post/this-application-requires-net-framework/">
+            <a href="https://wanghwyd.github.io/blogs/post/nginx-pei-zhi-wen-jian-xiang-jie/">
               <h3 class="post-title">
-                this application requires net framework
+                Nginx配置文件详解
               </h3>
             </a>
           </div>

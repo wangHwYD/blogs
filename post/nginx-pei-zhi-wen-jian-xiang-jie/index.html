@@ -1,40 +1,112 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://wanghwyd.github.io/blogs</id>
-    <title>小浩</title>
-    <updated>2021-11-25T09:26:08.047Z</updated>
-    <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://wanghwyd.github.io/blogs"/>
-    <link rel="self" href="https://wanghwyd.github.io/blogs/atom.xml"/>
-    <subtitle>温故而知新,记录生活</subtitle>
-    <logo>https://wanghwyd.github.io/blogs/images/avatar.png</logo>
-    <icon>https://wanghwyd.github.io/blogs/favicon.ico</icon>
-    <rights>All rights reserved 2021, 小浩</rights>
-    <entry>
-        <title type="html"><![CDATA[windows服务 使用installutil手工安装windows服务]]></title>
-        <id>https://wanghwyd.github.io/blogs/post/windows-fu-wu-shi-yong-installutil-shou-gong-an-zhuang-windows-fu-wu/</id>
-        <link href="https://wanghwyd.github.io/blogs/post/windows-fu-wu-shi-yong-installutil-shou-gong-an-zhuang-windows-fu-wu/">
-        </link>
-        <updated>2021-11-25T09:13:25.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="1找到-cwindowsmicrosoftnetframeworkv4030319">1.找到 C:\Windows\Microsoft.NET\Framework\v4.0.30319</h2>
-<p>打开cmd命令行</p>
-<h2 id="2执行命令">2.执行命令</h2>
-<pre><code>installutil E:\nginx-1.18.0\nginx-service.exe
-</code></pre>
-<h2 id="3完成安装提示-打开计算机管理的服务列表可以查看到自己的服务">3.完成安装提示 打开计算机管理的服务列表，可以查看到自己的服务</h2>
-<h2 id="4删除服务">4.删除服务</h2>
-<pre><code>installutil E:\nginx-1.18.0\nginx-service.exe -u
-刷新服务列表，发现找不到自己的服务了
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Nginx配置文件详解]]></title>
-        <id>https://wanghwyd.github.io/blogs/post/nginx-pei-zhi-wen-jian-xiang-jie/</id>
-        <link href="https://wanghwyd.github.io/blogs/post/nginx-pei-zhi-wen-jian-xiang-jie/">
-        </link>
-        <updated>2021-11-25T03:17:27.000Z</updated>
-        <content type="html"><![CDATA[<pre><code class="language-java">######Nginx配置文件nginx.conf中文详解#####
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Nginx配置文件详解 | 小浩</title>
+<link rel="shortcut icon" href="https://wanghwyd.github.io/blogs/favicon.ico?v=1637832346805">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://wanghwyd.github.io/blogs/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Nginx配置文件详解 | 小浩 - Atom Feed" href="https://wanghwyd.github.io/blogs/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="######Nginx配置文件nginx.conf中文详解#####
+ 
+#定义Nginx运行的用户和用户组
+user www www;
+ 
+#nginx进程数，建议设置为等于CPU总核心数。
+worker_processes 8;
+  
+..." />
+    <meta name="keywords" content="服务器,nginx" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://wanghwyd.github.io/blogs">
+  <img class="avatar" src="https://wanghwyd.github.io/blogs/images/avatar.png?v=1637832346805" alt="">
+  </a>
+  <h1 class="site-title">
+    小浩
+  </h1>
+  <p class="site-description">
+    温故而知新,记录生活
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Nginx配置文件详解
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-11-25
+              </span>
+              <span>
+                15 min read
+              </span>
+              
+                <a href="https://wanghwyd.github.io/blogs/tag/70kvu0CI9/" class="post-tag">
+                  # 服务器
+                </a>
+              
+                <a href="https://wanghwyd.github.io/blogs/tag/tyWB04rf8/" class="post-tag">
+                  # nginx
+                </a>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://wanghwyd.github.io/blogs/post-images/nginx-pei-zhi-wen-jian-xiang-jie.png" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <pre><code class="language-java">######Nginx配置文件nginx.conf中文详解#####
  
 #定义Nginx运行的用户和用户组
 user www www;
@@ -366,173 +438,77 @@ http
     }
 }
 </code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[简历]]></title>
-        <id>https://wanghwyd.github.io/blogs/post/jian-li/</id>
-        <link href="https://wanghwyd.github.io/blogs/post/jian-li/">
-        </link>
-        <updated>2021-11-24T07:44:30.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="联系方式">联系方式</h2>
-<ul>
-<li>手机：13409909996(常用)/17376592189(杭州)</li>
-<li>Email：542524570@163.com</li>
-<li>QQ/微信号：542524570/whw13409909996</li>
-</ul>
-<hr>
-<h2 id="个人信息">个人信息</h2>
-<img src="file://D:/kaifa/code/blogs/post-images/1637740024761.png" alt="图片替换文本" width="200" height="200" align="top" />
-- 王浩文/男/1993   						      	
-- 工作年限：6年
-- 专科/长江职业技术学院
-- 期望职位：Android开发/前端开发/后台开发
-- 期望薪资：面议
-<hr>
-<h3 id="技能清单">技能清单</h3>
-<ul>
-<li>1.熟练Android自定义控件，可以根据UI效果图实现控件;</li>
-<li>2.熟练掌握常见列表级控件的优化和技巧;</li>
-<li>3.熟练掌握异步任务加载网络数据;</li>
-<li>4.熟练掌握幕适配和兼容性适配;</li>
-<li>5.熟悉Android下内存优化，性能优化,能够妥善地平衡功能和性能开销;</li>
-<li>6.熟悉Android下的Hanlder 消息机制 和 AsyncTask 异步任务机制;</li>
-<li>7.能独立开发绝大多数android App项目</li>
-<li>8.熟悉百度地图定位、语音、图片识别、第三方支付、天地图、face++人脸识别、shardSDK第三方登录、融云客服、极光推送和即时聊天通讯等app第三方平台功能</li>
-<li>9.熟悉okhttp、butterknife、eventbus、imageloader、Glide、RxJava、RxAndroid、retrofit2、各类视频框架,等第三方库</li>
-<li>10.使用过mui前端框架开发过Hybrid App，上架android平台和ios平台;</li>
-<li>11.能熟练使用uniapp前端框架开发android app、ios app、微信小程序、h5、支付宝小程序开发，上架android平台和ios平台;</li>
-<li>12.在业务开展中，表现出优秀的技术判断与决策能力、产品感觉和问题分析能力，能够合理评估开发时间，并进行开发。</li>
-<li>13.熟悉android,ios上架流程,在多个app平台进行上架</li>
-<li>14.能使用flutter进行跨平台开发app</li>
-<li>Android/Java/Xml/Json/html5/html/Json/TCP/socket/webview/mvc/mvp/javaScript</li>
-<li>AndroidStudio/Eclipse/Svn/Git/github/mui/uni-app/rxjava/rxandroid/flutter/kotlin/uni-app/vue</li>
-</ul>
-<hr>
-<h2 id="工作经历">工作经历</h2>
-<h2 id="浙江联潮科技有限公司2021年2月-至今">浙江联潮科技有限公司（2021年2月-至今）</h2>
-<p>工作内容:根据公司需求完成后台,Android原生项目,js vue 前端项目</p>
-<h2 id="浙江逸智信息科技有限公司浙江恒逸石化有限公司2019年5月-2021年2月">浙江逸智信息科技有限公司(浙江恒逸石化有限公司)（2019年5月-2021年2月）</h2>
-<p>工作内容:根据公司需求完成android 和 ios app项目,js vue 前端项目,uni-app项目</p>
-<h2 id="上海得逸信息技术有限公司汉得信息子公司2019年3月-2019年5月">上海得逸信息技术有限公司(汉得信息子公司)（2019年3月-2019年5月）</h2>
-<p>工作内容:外派恒逸石化(浙江逸智信息科技有限公司),完成甲方需求</p>
-<h2 id="浙江艋顺信息科技有限公司-2016年11月-2019年3月">浙江艋顺信息科技有限公司 （2016年11月 - 2019年3月）</h2>
-<p>工作内容:负责公司android项目开发,android项目架构设计,对甲方需求整理</p>
-<h2 id="项目经验">项目经验</h2>
-<h3 id="智慧渔港浙江联潮信息科技有限公司2021年5月-独立开发">智慧渔港(浙江联潮信息科技有限公司2021年5月-) 独立开发</h3>
-<h3 id="嘉兴市海洋空间资源数据外业采集系统平板app浙江联潮信息科技有限公司2021年2月-4月底-独立开发">嘉兴市海洋空间资源数据外业采集系统平板app(浙江联潮信息科技有限公司2021年2月-4月底) 独立开发</h3>
-<h3 id="临海市海洋基础数据管理系统平板app浙江联潮信息科技有限公司2021年2月-4月底-独立开发">临海市海洋基础数据管理系统平板app(浙江联潮信息科技有限公司2021年2月-4月底) 独立开发</h3>
-<p>该项目为原生项目,<br>
-1.集成华测RTK,google ORC<br>
-2.mbtiles,ArcGIS切片bundle/bundlx读取,excel解析<br>
-3.图层数据展示,数据采集,数据核查,文件查看,系统设置</p>
-<h3 id="临海市海洋基础数据管理系统后台系统浙江联潮信息科技有限公司2021年2月-4月底-独立开发">临海市海洋基础数据管理系统后台系统(浙江联潮信息科技有限公司2021年2月-4月底) 独立开发</h3>
-<p>1.后台框架使用若依</p>
-<h3 id="运维">运维</h3>
-<p>1.高新（逸鹏）运维<br>
-2.恒逸微商城运维<br>
-3.营销闭环 运维</p>
-<h3 id="双兔单锭自动化项目前端加扫码枪">双兔(单锭)自动化项目(前端加扫码枪)</h3>
-<p>1.主要负责后台管理系统前端<br>
-2.扫码枪app 丝车追溯 质检报告 在线丝车 生产计划 丝车管理</p>
-<h3 id="机配件管理逸景工厂扫码出库-混合app">机配件管理(逸景工厂扫码出库) 混合app</h3>
-<p>原生加vue h5<br>
-1.对接公司sap<br>
-2.主要功能:公司清单 工厂清单 成本中心 库存地点 收货方查询 领料单 扫码出库</p>
-<h3 id="恒逸微商城浙江逸智信息科技有限公司2019年6月-12月-独立开发">恒逸微商城(浙江逸智信息科技有限公司2019年6月-12月) 独立开发</h3>
-<p>该项目为uni-app框架开发的混合项目,适配android 、ios端</p>
-<p>1.使用uni-app框架进行开发,独立完成项目</p>
-<p>项目图片: https://github.com/wangHwYD/resume/blob/master/images/hywsc/wsc.md</p>
-<h3 id="任务指派上海得逸信息技术有限公司2019年3月-2019年5月-独立开发">任务指派(上海得逸信息技术有限公司2019年3月-2019年5月) 独立开发</h3>
-<p>该项目为原生项目,<br>
-1.集成百度语音,完成语音转行为文字功能,<br>
-2.修复发布模块bug 语音模块 发布任务功能<br>
-3.任务模块,完成任务修改删除,自由行任务增加协同人员功能<br>
-4.任务页面,登陆,我的<br>
-5.项目部分优化,抽取部分代码,删除无用资源,优化项目</p>
-<h3 id="海洋空间资源数据采集系统浙江艋顺信息科技有限公司201803-05平板项目-独立开发">海洋空间资源数据采集系统(浙江艋顺信息科技有限公司2018.03-05)平板项目 独立开发</h3>
-<p>负责该项目开发,项目涉及国土资源数据未进行上架;<br>
-1.该项目中有大量的JavaScript交互<br>
-2.项目地图采用卫星瓦片图,海量图片数据加载<br>
-3.项目使用mvc架构  rxjava2+rxandroid+greendao+glide+jiaozivideoplayer<br>
-4.数据使用AES加密解密<br>
-5.文档查看使用word数据解析 xlsx数据生成,生成 pdf google全景图<br>
-6.集成华测RTK GPS测绘仪,进行gps数据保存导出<br>
-7.进行地图数据修正和采集<br>
-操作手册:http://note.youdao.com/noteshare?id=4083b59745b4db1a1a5c4e46c76a1471<br>
-项目图片:<br>
-https://github.com/wangHwYD/resume/blob/master/images/%E6%B5%B7%E6%B4%8B%E7%A9%BA%E9%97%B4%E8%B5%84%E6%BA%90%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E7%B3%BB%E7%BB%9F/hy.md</p>
-<h3 id="湾滩长助手浙江艋顺信息科技有限公司201712-20182独立开发">湾滩长助手(浙江艋顺信息科技有限公司2017.12-2018.2)独立开发</h3>
-<p>负责对android app开发<br>
-项目使用:<br>
-1.使用mvp架构<br>
-2.网络框架使用rxjava2+rxandroid++okhttp+retrofit2<br>
-3.数据库使用greendao,图片框架glide,视频库jiaozivideoplayer<br>
-4.集成第三方厂商视频监控,接入视频摄像头拍摄的视频流<br>
-5.集成 极光推送 百度语音 天地图<br>
-使用天地图完成巡滩路线记录,使用视频监控完成视频巡滩逻辑<br>
-解决在手机锁屏状态下的gps数据采集,进行gps数据精度矫正,完成海康摄像头的视频数流读取与解析<br>
-项目图片 https://github.com/wangHwYD/resume/blob/master/images/%E6%B9%BE%E6%BB%A9%E9%95%BF%E5%8A%A9%E6%89%8B/tz.md</p>
-<h3 id="水产品安全监管平台浙江艋顺信息科技有限公司201706-06项目-独立开发">水产品安全监管平台(浙江艋顺信息科技有限公司2017.06-06)项目  独立开发</h3>
-<p>该项目 使用DCloud的MUI框架混合开发<br>
-项目业务为浙江省玉环市渔业局项目,监察市内渔业养殖户渔药使用情况<br>
-1.使用Dcloud 的MUI进行的混合开发,<br>
-2.上架android市场和ios端<br>
-上架市场 豌豆荚,360,华为 ios appStore<br>
-项目图片:<br>
-https://github.com/wangHwYD/resume/blob/master/images/%E6%B0%B4%E4%BA%A7%E5%93%81%E5%AE%89%E5%85%A8%E7%9B%91%E7%AE%A1%E5%B9%B3%E5%8F%B0/scp.md</p>
-<h3 id="海宝一号浙江艋顺信息科技有限公司201701-04-广告机项目-独立开发">海宝一号(浙江艋顺信息科技有限公司2017.01-04) 广告机项目 独立开发</h3>
-<p>负责该项目<br>
-1.使用mvc设计模式,<br>
-2.网络架构为rxjava2+rxandroid+okhttp+retrofit2<br>
-3.图片框架 glide4.1数据库greendao 集成厂家身份证读取模块,   百度语音,GPS/北斗<br>
-4.记录gps数据,回传服务器,开机启动,进行身份证信息读取</p>
-<p>项目图片:<br>
-https://github.com/wangHwYD/resume/blob/master/images/%E6%B5%B7%E5%AE%9D%E4%B8%80%E5%8F%B7/hb.md</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[关于]]></title>
-        <id>https://wanghwyd.github.io/blogs/post/about/</id>
-        <link href="https://wanghwyd.github.io/blogs/post/about/">
-        </link>
-        <updated>2021-11-24T01:09:48.000Z</updated>
-        <content type="html"><![CDATA[<blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<pre><code>    使用github + Gridea  记录一些平常遇到的bug,和整理一些技术资料
-</code></pre>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<pre><code>    王浩文
-</code></pre>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<pre><code>    ^_^
-</code></pre>
-<h2 id="联系我呀">📬 联系我呀</h2>
-<pre><code>    542524570@163.com   
-</code></pre>
-<p><a href="https://wanghwyd.github.io/blogs/post/jian-li">个人简历</a></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[this application requires net framework]]></title>
-        <id>https://wanghwyd.github.io/blogs/post/this-application-requires-net-framework/</id>
-        <link href="https://wanghwyd.github.io/blogs/post/this-application-requires-net-framework/">
-        </link>
-        <updated>2018-11-24T08:06:32.000Z</updated>
-        <content type="html"><![CDATA[<p>当安装MySQL高版本时，出现this application requires .net framework4提示信息，不能继续安装时，处理步骤：<br>
-<img src="https://wanghwyd.github.io/blogs/post-images/1637741591495.jpg" alt="" loading="lazy"></p>
-<p>1.下载所需要的Net FrameWork插件</p>
-<pre><code>https://dotnet.microsoft.com/download/dotnet-framework
-</code></pre>
-<p>2.安装此插件<br>
-等待安装完成<br>
-<img src="https://wanghwyd.github.io/blogs/post-images/1637741795143.png" alt="" loading="lazy"><br>
-安装完毕<br>
-<img src="https://wanghwyd.github.io/blogs/post-images/1637741819526.png" alt="" loading="lazy"><br>
-安装完成后会提示重启电脑<br>
-3.重启电脑成功之后，再安装MySQL</p>
-]]></content>
-    </entry>
-</feed>
+
+              </div>
+              <div class="toc-container">
+                
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://wanghwyd.github.io/blogs/post/jian-li/">
+              <h3 class="post-title">
+                简历
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="https://wanghwyd.github.io/blogs/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
