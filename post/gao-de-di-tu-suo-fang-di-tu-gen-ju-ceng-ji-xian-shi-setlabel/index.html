@@ -2,20 +2,19 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>this application requires net framework | 小浩</title>
+<title>高德地图 缩放地图根据层级显示setLabel | 小浩</title>
 <link rel="shortcut icon" href="https://wanghwyd.github.io/blogs/favicon.ico?v=1637895205281">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://wanghwyd.github.io/blogs/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="this application requires net framework | 小浩 - Atom Feed" href="https://wanghwyd.github.io/blogs/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="高德地图 缩放地图根据层级显示setLabel | 小浩 - Atom Feed" href="https://wanghwyd.github.io/blogs/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="当安装MySQL高版本时，出现this application requires .net framework4提示信息，不能继续安装时，处理步骤：
-
-1.下载所需要的Net FrameWork插件
-https://dotnet.micro..." />
-    <meta name="keywords" content="mysql,bug" />
+    <meta name="description" content="      this.map.on('zoomend', () =&gt; {
+        let zoom = this.map.getZoom() //获取当前地图级别
+        console.log(zoom + '结束'..." />
+    <meta name="keywords" content="" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
@@ -77,42 +76,39 @@ https://dotnet.micro..." />
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              this application requires net framework
+              高德地图 缩放地图根据层级显示setLabel
             </h2>
             <div class="post-info">
               <span>
-                2018-11-24
+                2021-11-25
               </span>
               <span>
                 1 min read
               </span>
               
-                <a href="https://wanghwyd.github.io/blogs/tag/guTRSVy9s/" class="post-tag">
-                  # mysql
-                </a>
-              
-                <a href="https://wanghwyd.github.io/blogs/tag/fxscD2KrH/" class="post-tag">
-                  # bug
-                </a>
-              
             </div>
-            
-              <img class="post-feature-image" src="https://wanghwyd.github.io/blogs/post-images/this-application-requires-net-framework.jpg" alt="">
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>当安装MySQL高版本时，出现this application requires .net framework4提示信息，不能继续安装时，处理步骤：<br>
-<img src="https://wanghwyd.github.io/blogs/post-images/1637741591495.jpg" alt="" loading="lazy"></p>
-<p>1.下载所需要的Net FrameWork插件</p>
-<pre><code>https://dotnet.microsoft.com/download/dotnet-framework
+                <pre><code class="language-javascript">      this.map.on('zoomend', () =&gt; {
+        let zoom = this.map.getZoom() //获取当前地图级别
+        console.log(zoom + '结束')
+        if (zoom &gt; 13) {
+          this.pointToAvoidDisasterMarkerList.forEach((item) =&gt; {
+            item.setLabel({
+              offset: new AMap.Pixel(0, -2), //设置文本标注偏移量
+              content: &quot;&lt;div class='map-info'&gt;&quot; + item.detail.name + '&lt;/div&gt;', //设置文本标注内容
+              direction: 'bottom', //设置文本标注方位
+            })
+          })
+        } else {
+          this.pointToAvoidDisasterMarkerList.forEach((item) =&gt; {
+            item.setLabel(null)
+          })
+        }
+      })
+
 </code></pre>
-<p>2.安装此插件<br>
-等待安装完成<br>
-<img src="https://wanghwyd.github.io/blogs/post-images/1637741795143.png" alt="" loading="lazy"><br>
-安装完毕<br>
-<img src="https://wanghwyd.github.io/blogs/post-images/1637741819526.png" alt="" loading="lazy"><br>
-安装完成后会提示重启电脑<br>
-3.重启电脑成功之后，再安装MySQL</p>
 
               </div>
               <div class="toc-container">
@@ -122,6 +118,15 @@ https://dotnet.micro..." />
           </article>
         </div>
 
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://wanghwyd.github.io/blogs/post/windows-fu-wu-shi-yong-installutil-shou-gong-an-zhuang-windows-fu-wu/">
+              <h3 class="post-title">
+                windows服务 使用installutil手工安装windows服务
+              </h3>
+            </a>
+          </div>
         
 
         

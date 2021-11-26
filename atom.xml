@@ -2,14 +2,41 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wanghwyd.github.io/blogs</id>
     <title>小浩</title>
-    <updated>2021-11-25T09:26:08.047Z</updated>
+    <updated>2021-11-26T02:53:44.520Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wanghwyd.github.io/blogs"/>
     <link rel="self" href="https://wanghwyd.github.io/blogs/atom.xml"/>
-    <subtitle>温故而知新,记录生活</subtitle>
+    <subtitle>温故而知新,记录日常遇到的问题,资料</subtitle>
     <logo>https://wanghwyd.github.io/blogs/images/avatar.png</logo>
     <icon>https://wanghwyd.github.io/blogs/favicon.ico</icon>
     <rights>All rights reserved 2021, 小浩</rights>
+    <entry>
+        <title type="html"><![CDATA[高德地图 缩放地图根据层级显示setLabel]]></title>
+        <id>https://wanghwyd.github.io/blogs/post/gao-de-di-tu-suo-fang-di-tu-gen-ju-ceng-ji-xian-shi-setlabel/</id>
+        <link href="https://wanghwyd.github.io/blogs/post/gao-de-di-tu-suo-fang-di-tu-gen-ju-ceng-ji-xian-shi-setlabel/">
+        </link>
+        <updated>2021-11-25T09:29:14.000Z</updated>
+        <content type="html"><![CDATA[<pre><code class="language-javascript">      this.map.on('zoomend', () =&gt; {
+        let zoom = this.map.getZoom() //获取当前地图级别
+        console.log(zoom + '结束')
+        if (zoom &gt; 13) {
+          this.pointToAvoidDisasterMarkerList.forEach((item) =&gt; {
+            item.setLabel({
+              offset: new AMap.Pixel(0, -2), //设置文本标注偏移量
+              content: &quot;&lt;div class='map-info'&gt;&quot; + item.detail.name + '&lt;/div&gt;', //设置文本标注内容
+              direction: 'bottom', //设置文本标注方位
+            })
+          })
+        } else {
+          this.pointToAvoidDisasterMarkerList.forEach((item) =&gt; {
+            item.setLabel(null)
+          })
+        }
+      })
+
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[windows服务 使用installutil手工安装windows服务]]></title>
         <id>https://wanghwyd.github.io/blogs/post/windows-fu-wu-shi-yong-installutil-shou-gong-an-zhuang-windows-fu-wu/</id>
@@ -411,7 +438,7 @@ http
 <hr>
 <h2 id="工作经历">工作经历</h2>
 <h2 id="浙江联潮科技有限公司2021年2月-至今">浙江联潮科技有限公司（2021年2月-至今）</h2>
-<p>工作内容:根据公司需求完成后台,Android原生项目,js vue 前端项目</p>
+<p>工作内容:根据公司需求完成后台springboot项目,Android原生项目,js vue 前端项目</p>
 <h2 id="浙江逸智信息科技有限公司浙江恒逸石化有限公司2019年5月-2021年2月">浙江逸智信息科技有限公司(浙江恒逸石化有限公司)（2019年5月-2021年2月）</h2>
 <p>工作内容:根据公司需求完成android 和 ios app项目,js vue 前端项目,uni-app项目</p>
 <h2 id="上海得逸信息技术有限公司汉得信息子公司2019年3月-2019年5月">上海得逸信息技术有限公司(汉得信息子公司)（2019年3月-2019年5月）</h2>
@@ -419,10 +446,11 @@ http
 <h2 id="浙江艋顺信息科技有限公司-2016年11月-2019年3月">浙江艋顺信息科技有限公司 （2016年11月 - 2019年3月）</h2>
 <p>工作内容:负责公司android项目开发,android项目架构设计,对甲方需求整理</p>
 <h2 id="项目经验">项目经验</h2>
-<h3 id="智慧渔港浙江联潮信息科技有限公司2021年5月-独立开发">智慧渔港(浙江联潮信息科技有限公司2021年5月-) 独立开发</h3>
+<h3 id="智慧渔港浙江联潮信息科技有限公司2021年5月-后台独立开发">智慧渔港(浙江联潮信息科技有限公司2021年5月-) 后台独立开发</h3>
 <h3 id="嘉兴市海洋空间资源数据外业采集系统平板app浙江联潮信息科技有限公司2021年2月-4月底-独立开发">嘉兴市海洋空间资源数据外业采集系统平板app(浙江联潮信息科技有限公司2021年2月-4月底) 独立开发</h3>
 <h3 id="临海市海洋基础数据管理系统平板app浙江联潮信息科技有限公司2021年2月-4月底-独立开发">临海市海洋基础数据管理系统平板app(浙江联潮信息科技有限公司2021年2月-4月底) 独立开发</h3>
-<p>该项目为原生项目,<br>
+<p><a href="https://wanghwyd.github.io/blogs/post/linhaizr/">图片</a><br>
+该项目为原生项目,<br>
 1.集成华测RTK,google ORC<br>
 2.mbtiles,ArcGIS切片bundle/bundlx读取,excel解析<br>
 3.图层数据展示,数据采集,数据核查,文件查看,系统设置</p>
