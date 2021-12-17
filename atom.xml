@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wanghwyd.github.io/blogs</id>
     <title>小浩</title>
-    <updated>2021-11-26T03:25:35.665Z</updated>
+    <updated>2021-12-17T03:25:59.641Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wanghwyd.github.io/blogs"/>
     <link rel="self" href="https://wanghwyd.github.io/blogs/atom.xml"/>
@@ -10,6 +10,124 @@
     <logo>https://wanghwyd.github.io/blogs/images/avatar.png</logo>
     <icon>https://wanghwyd.github.io/blogs/favicon.ico</icon>
     <rights>All rights reserved 2021, 小浩</rights>
+    <entry>
+        <title type="html"><![CDATA[sql查询当天，当月，上个月，当年,上年的数据]]></title>
+        <id>https://wanghwyd.github.io/blogs/post/sql-cha-xun-dang-tian-dang-yue-shang-ge-yue-dang-nian-shang-nian-de-shu-ju/</id>
+        <link href="https://wanghwyd.github.io/blogs/post/sql-cha-xun-dang-tian-dang-yue-shang-ge-yue-dang-nian-shang-nian-de-shu-ju/">
+        </link>
+        <updated>2021-12-17T02:57:59.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="当天">当天</h1>
+<pre><code class="language-sql">select * from 表名 where TO_DAYS(时间字段名) = TO_DAYS(NOW());
+</code></pre>
+<h1 id="昨天">昨天</h1>
+<pre><code class="language-sql">SELECT * FROM 表名 WHERE TO_DAYS(NOW( ) ) - TO_DAYS( 时间字段名) &lt;= 1
+</code></pre>
+<h1 id="前天">前天</h1>
+<pre><code class="language-sql">SELECT * FROM 表名 WHERE TO_DAYS(NOW( ) ) - TO_DAYS( 时间字段名) = 2
+</code></pre>
+<h1 id="最近7天">最近7天</h1>
+<pre><code class="language-sql">SELECT * FROM 表名 where DATE_SUB(CURDATE(), INTERVAL 7 DAY) &lt;= date(时间字段名)
+</code></pre>
+<h1 id="最近30天">最近30天</h1>
+<pre><code class="language-sql">SELECT * FROM 表名 where DATE_SUB(CURDATE(), INTERVAL 30 DAY) &lt;= date(时间字段名)
+</code></pre>
+<h1 id="这周数据">这周数据</h1>
+<pre><code class="language-sql">SELECT * FROM 表名 WHERE YEARWEEK(DATE_FORMAT(时间字段名,'%Y-%m-%d')) = YEARWEEK(NOW());
+</code></pre>
+<h1 id="上周数据">上周数据</h1>
+<pre><code class="language-sql">SELECT * FROM 表名 WHERE YEARWEEK(DATE_FORMAT(时间字段名,'%Y-%m-%d')) = YEARWEEK(NOW()) - 1;
+</code></pre>
+<h1 id="当月">当月</h1>
+<pre><code class="language-sql">SELECT * FROM 表名 WHERE DATE_FORMAT( 时间字段名, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' )
+</code></pre>
+<h1 id="上月">上月</h1>
+<pre><code class="language-sql">SELECT * FROM 表名 WHERE PERIOD_DIFF( DATE_FORMAT(NOW( ) , '%Y%m' ) , DATE_FORMAT( 时间字段名, '%Y%m' ) ) =1
+</code></pre>
+<h1 id="本季度数据">本季度数据</h1>
+<pre><code class="language-sql">select * from 表名 where QUARTER(时间字段名)=QUARTER(NOW());
+</code></pre>
+<h1 id="上季度数据">上季度数据</h1>
+<pre><code class="language-sql">select * from 表名 where QUARTER(时间字段名)=QUARTER(DATE_SUB(NOW(),interval 1 QUARTER));
+</code></pre>
+<h1 id="当前半年">当前半年</h1>
+<pre><code class="language-sql">select * from 表名 where 时间字段名 between date_sub(NOW(),interval 6 month) and NOW();
+</code></pre>
+<h1 id="当年">当年</h1>
+<pre><code class="language-sql">select * from 表名 where YEAR(时间字段名)=YEAR(NOW());
+</code></pre>
+<h1 id="上年">上年</h1>
+<pre><code class="language-sql">select * from 表名 where year(时间字段名)=year(DATE_SUB(NOW(),interval 1 year));
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[配置SpringBoot同时支持http和https访问]]></title>
+        <id>https://wanghwyd.github.io/blogs/post/pei-zhi-springboot-tong-shi-zhi-chi-http-he-https-fang-wen/</id>
+        <link href="https://wanghwyd.github.io/blogs/post/pei-zhi-springboot-tong-shi-zhi-chi-http-he-https-fang-wen/">
+        </link>
+        <updated>2021-12-03T06:11:23.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="配置https访问">配置https访问</h2>
+<ul>
+<li>1.生成证书</li>
+<li>如果配置了JAVA开发环境，可以使用keytool命令生成证书。我们打开控制台，输入：<pre><code>keytool -genkey -alias tomcat -dname &quot;CN=Andy,OU=kfit,O=kfit,L=HaiDian,ST=BeiJing,C=CN&quot; -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore keystore.p12 -validity 365
+
+</code></pre>
+输入后会提示输入密码，这个密码在下面配置文件有用到。<br>
+生成后，在家目录找到证书文件，复制到SpringBoot应用的src/main/resources下。<br>
+2.在SpringBoot应用的application.properties增加ssl配置：</li>
+</ul>
+<pre><code>#https端口号.
+server.port=443
+#证书的路径.
+server.ssl.key-store=classpath:keystore.p12
+#证书密码，请修改为您自己证书的密码.
+server.ssl.key-store-password=123456（改为之前设置的密码）
+#秘钥库类型
+server.ssl.keyStoreType=PKCS12
+#证书别名
+server.ssl.keyAlias=tomcat
+</code></pre>
+<p>或者在application.yml,加入下列配置：</p>
+<pre><code>ssl:
+ key-store: server.keystore
+ enabled: true
+ key-store-password: 123456 改为之前设置的密码）
+ key-store-type: JKS
+</code></pre>
+<p>此时启动SpringBoot应用，发现可以通过https访问了。</p>
+<h3 id="配置http访问">配置http访问</h3>
+<p>由于之前在配置文件配置了https，因此http要通过代码的形式配置。这个配置也比较简单，添加一个配置类就可以了。</p>
+<pre><code class="language-java">@Configuration
+public class TomcatConfig {
+
+@Value(&quot;${server.http.port}&quot;)
+private int httpPort;
+
+@Bean
+public EmbeddedServletContainerCustomizer containerCustomizer() {
+    return new EmbeddedServletContainerCustomizer() {
+        @Override
+        public void customize(ConfigurableEmbeddedServletContainer container) {
+            if (container instanceof TomcatEmbeddedServletContainerFactory) {
+                TomcatEmbeddedServletContainerFactory containerFactory =
+                        (TomcatEmbeddedServletContainerFactory) container;
+
+                Connector connector = new Connector(TomcatEmbeddedServletContainerFactory.DEFAULT_PROTOCOL);
+                connector.setPort(httpPort);
+                containerFactory.addAdditionalTomcatConnectors(connector);
+            }
+        }
+    };
+}
+}
+</code></pre>
+<p>此时启动SpringBoot应用，发现也可以通过http 访问了。</p>
+<p>作者：慢游世界<br>
+链接：https://www.jianshu.com/p/49bdcaf74513<br>
+来源：简书<br>
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[高德地图 缩放地图根据层级显示setLabel]]></title>
         <id>https://wanghwyd.github.io/blogs/post/gao-de-di-tu-suo-fang-di-tu-gen-ju-ceng-ji-xian-shi-setlabel/</id>
@@ -401,20 +519,22 @@ http
         <link href="https://wanghwyd.github.io/blogs/post/jian-li/">
         </link>
         <updated>2021-11-24T07:44:30.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="联系方式">联系方式</h2>
+        <content type="html"><![CDATA[<p>##📱 联系方式</p>
 <ul>
 <li>手机：13409909996(常用)/17376592189(杭州)</li>
 <li>Email：542524570@163.com</li>
 <li>QQ/微信号：542524570/whw13409909996</li>
 </ul>
 <hr>
-<h2 id="个人信息">个人信息</h2>
-<img src="file://D:/kaifa/code/blogs/post-images/1637740024761.png" alt="图片替换文本" width="200" height="200" align="top" />
-- 王浩文/男/1993   						      	
-- 工作年限：6年
-- 专科/长江职业技术学院
-- 期望职位：Android开发/前端开发/后台开发
-- 期望薪资：面议
+<h2 id="个人信息">📄个人信息</h2>
+<figure data-type="image" tabindex="1"><img src="https://wanghwyd.github.io/blogs/post-images/1637897584113.png" alt="" loading="lazy"></figure>
+<ul>
+<li>王浩文/男/1993</li>
+<li>工作年限：6年</li>
+<li>专科/长江职业技术学院</li>
+<li>期望职位：Android开发/前端开发/后台开发</li>
+<li>期望薪资：面议</li>
+</ul>
 <hr>
 <h3 id="技能清单">技能清单</h3>
 <ul>
@@ -436,7 +556,7 @@ http
 <li>AndroidStudio/Eclipse/Svn/Git/github/mui/uni-app/rxjava/rxandroid/flutter/kotlin/uni-app/vue</li>
 </ul>
 <hr>
-<h2 id="工作经历">工作经历</h2>
+<h2 id="工作经历">💻 工作经历</h2>
 <h2 id="浙江联潮科技有限公司2021年2月-至今">浙江联潮科技有限公司（2021年2月-至今）</h2>
 <p>工作内容:根据公司需求完成后台springboot项目,Android原生项目,js vue 前端项目</p>
 <h2 id="浙江逸智信息科技有限公司浙江恒逸石化有限公司2019年5月-2021年2月">浙江逸智信息科技有限公司(浙江恒逸石化有限公司)（2019年5月-2021年2月）</h2>

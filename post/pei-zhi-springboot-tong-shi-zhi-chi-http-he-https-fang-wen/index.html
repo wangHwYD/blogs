@@ -2,28 +2,19 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>关于 | 小浩</title>
+<title>配置SpringBoot同时支持http和https访问 | 小浩</title>
 <link rel="shortcut icon" href="https://wanghwyd.github.io/blogs/favicon.ico?v=1639711555376">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://wanghwyd.github.io/blogs/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="关于 | 小浩 - Atom Feed" href="https://wanghwyd.github.io/blogs/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="配置SpringBoot同时支持http和https访问 | 小浩 - Atom Feed" href="https://wanghwyd.github.io/blogs/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="
-欢迎来到我的小站呀，很高兴遇见你！🤝
+    <meta name="description" content="配置https访问
 
-🏠 关于本站
-    使用github + Gridea  记录一些平常遇到的bug,和整理一些技术资料
-
-👨‍💻 博主是谁
-    王浩文
-
-⛹ 兴趣爱好
-    ^_^
-
-📬 联系我呀..." />
+1.生成证书
+如果配置了JAVA开发环境，可以使用keytool命令生成证书。我们打开控制台，输入：keytool -genkey -alias tomcat -dname &quot;CN=Andy,OU=kfit,..." />
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -86,48 +77,91 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              关于
+              配置SpringBoot同时支持http和https访问
             </h2>
             <div class="post-info">
               <span>
-                2021-11-24
+                2021-12-03
               </span>
               <span>
-                1 min read
+                2 min read
               </span>
               
             </div>
             
-              <img class="post-feature-image" src="https://wanghwyd.github.io/blogs/post-images/about.jpg" alt="">
-            
             <div class="post-content-wrapper">
               <div class="post-content">
-                <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<pre><code>    使用github + Gridea  记录一些平常遇到的bug,和整理一些技术资料
+                <h2 id="配置https访问">配置https访问</h2>
+<ul>
+<li>1.生成证书</li>
+<li>如果配置了JAVA开发环境，可以使用keytool命令生成证书。我们打开控制台，输入：<pre><code>keytool -genkey -alias tomcat -dname &quot;CN=Andy,OU=kfit,O=kfit,L=HaiDian,ST=BeiJing,C=CN&quot; -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore keystore.p12 -validity 365
+
 </code></pre>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<pre><code>    王浩文
+输入后会提示输入密码，这个密码在下面配置文件有用到。<br>
+生成后，在家目录找到证书文件，复制到SpringBoot应用的src/main/resources下。<br>
+2.在SpringBoot应用的application.properties增加ssl配置：</li>
+</ul>
+<pre><code>#https端口号.
+server.port=443
+#证书的路径.
+server.ssl.key-store=classpath:keystore.p12
+#证书密码，请修改为您自己证书的密码.
+server.ssl.key-store-password=123456（改为之前设置的密码）
+#秘钥库类型
+server.ssl.keyStoreType=PKCS12
+#证书别名
+server.ssl.keyAlias=tomcat
 </code></pre>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<pre><code>    ^_^
+<p>或者在application.yml,加入下列配置：</p>
+<pre><code>ssl:
+ key-store: server.keystore
+ enabled: true
+ key-store-password: 123456 改为之前设置的密码）
+ key-store-type: JKS
 </code></pre>
-<h2 id="联系我呀">📬 联系我呀</h2>
-<pre><code>    542524570@163.com   
+<p>此时启动SpringBoot应用，发现可以通过https访问了。</p>
+<h3 id="配置http访问">配置http访问</h3>
+<p>由于之前在配置文件配置了https，因此http要通过代码的形式配置。这个配置也比较简单，添加一个配置类就可以了。</p>
+<pre><code class="language-java">@Configuration
+public class TomcatConfig {
+
+@Value(&quot;${server.http.port}&quot;)
+private int httpPort;
+
+@Bean
+public EmbeddedServletContainerCustomizer containerCustomizer() {
+    return new EmbeddedServletContainerCustomizer() {
+        @Override
+        public void customize(ConfigurableEmbeddedServletContainer container) {
+            if (container instanceof TomcatEmbeddedServletContainerFactory) {
+                TomcatEmbeddedServletContainerFactory containerFactory =
+                        (TomcatEmbeddedServletContainerFactory) container;
+
+                Connector connector = new Connector(TomcatEmbeddedServletContainerFactory.DEFAULT_PROTOCOL);
+                connector.setPort(httpPort);
+                containerFactory.addAdditionalTomcatConnectors(connector);
+            }
+        }
+    };
+}
+}
 </code></pre>
-<p><a href="https://wanghwyd.github.io/blogs/post/jian-li">个人简历</a></p>
+<p>此时启动SpringBoot应用，发现也可以通过http 访问了。</p>
+<p>作者：慢游世界<br>
+链接：https://www.jianshu.com/p/49bdcaf74513<br>
+来源：简书<br>
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
 
               </div>
               <div class="toc-container">
                 <ul class="markdownIt-TOC">
 <li>
 <ul>
-<li><a href="#%E5%85%B3%E4%BA%8E%E6%9C%AC%E7%AB%99">🏠 关于本站</a></li>
-<li><a href="#%E5%8D%9A%E4%B8%BB%E6%98%AF%E8%B0%81">👨‍💻 博主是谁</a></li>
-<li><a href="#%E5%85%B4%E8%B6%A3%E7%88%B1%E5%A5%BD">⛹ 兴趣爱好</a></li>
-<li><a href="#%E8%81%94%E7%B3%BB%E6%88%91%E5%91%80">📬 联系我呀</a></li>
+<li><a href="#%E9%85%8D%E7%BD%AEhttps%E8%AE%BF%E9%97%AE">配置https访问</a>
+<ul>
+<li><a href="#%E9%85%8D%E7%BD%AEhttp%E8%AE%BF%E9%97%AE">配置http访问</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -140,9 +174,9 @@
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://wanghwyd.github.io/blogs/post/this-application-requires-net-framework/">
+            <a href="https://wanghwyd.github.io/blogs/post/gao-de-di-tu-suo-fang-di-tu-gen-ju-ceng-ji-xian-shi-setlabel/">
               <h3 class="post-title">
-                this application requires net framework
+                高德地图 缩放地图根据层级显示setLabel
               </h3>
             </a>
           </div>
